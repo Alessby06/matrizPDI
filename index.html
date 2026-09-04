@@ -535,29 +535,144 @@
       color: var(--mustard);
     }
 
-    /* Print styles */
+        /* Print styles */
     @media print {
       body {
         background: #ffffff !important;
-        color: #000000 !important;
-        padding: 0;
+        color: #0f172a !important;
+        padding: 0 !important;
+        font-size: 11px !important;
+      }
+
+      body::before {
+        display: none !important;
+      }
+
+      .container {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
       }
 
       .controls-bar,
       .header-actions,
-      .matriz-header,
-      .matriz-row {
-        min-width: auto !important;
-        color: #000000 !important;
-        border-color: #cccccc !important;
+      .pagination-bar,
+      .nomenclatura-banner,
+      .footer,
+      .doc-btn-dl {
+        display: none !important;
       }
 
-      .col-codigo,
-      .modulo-badge,
-      .priority-badge {
-        border: 1px solid #000000 !important;
+      .header {
+        margin-bottom: 14px !important;
+      }
+
+      .header h1 {
+        font-size: 19px !important;
         color: #000000 !important;
-        background: transparent !important;
+      }
+
+      .kpi-grid {
+        display: flex !important;
+        gap: 10px !important;
+        margin-bottom: 14px !important;
+      }
+
+      .kpi-card {
+        background: #f8fafc !important;
+        border: 1px solid #cbd5e1 !important;
+        padding: 8px 12px !important;
+        box-shadow: none !important;
+        flex: 1 !important;
+      }
+
+      .kpi-label {
+        color: #64748b !important;
+        font-size: 10px !important;
+        text-transform: uppercase !important;
+      }
+
+      .kpi-val {
+        color: #0f172a !important;
+        font-size: 18px !important;
+        font-weight: 800 !important;
+      }
+
+      .table-wrapper {
+        border: 1px solid #cbd5e1 !important;
+        background: #ffffff !important;
+        box-shadow: none !important;
+        overflow: visible !important;
+      }
+
+      .matriz-header {
+        background: #f1f5f9 !important;
+        color: #0f172a !important;
+        border-bottom: 2px solid #cbd5e1 !important;
+        font-size: 10.5px !important;
+        font-weight: 700 !important;
+      }
+
+      .matriz-row {
+        border-bottom: 1px solid #e2e8f0 !important;
+        page-break-inside: avoid !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
+      }
+
+      .matriz-row::before {
+        display: none !important;
+      }
+
+      .col-codigo {
+        background: #f1f5f9 !important;
+        color: #0f172a !important;
+        border: 1px solid #cbd5e1 !important;
+      }
+
+      .col-proceso {
+        color: #0f172a !important;
+        font-weight: 600 !important;
+      }
+
+      .col-info {
+        color: #334155 !important;
+      }
+
+      .modulo-badge {
+        background: #f8fafc !important;
+        color: #0f172a !important;
+        border: 1px solid #94a3b8 !important;
+      }
+
+      .modulo-badge::before {
+        display: none !important;
+      }
+
+      .priority-badge {
+        background: #f8fafc !important;
+        color: #0f172a !important;
+        border: 1px solid #94a3b8 !important;
+      }
+
+      .doc-card-link {
+        background: #f8fafc !important;
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+      }
+
+      .doc-btn-view {
+        color: #0f172a !important;
+      }
+
+      .doc-btn-view svg {
+        stroke: #0f172a !important;
+      }
+
+      .doc-ext.pdf {
+        background: #fee2e2 !important;
+        color: #991b1b !important;
+        border: 1px solid #f87171 !important;
       }
     }
 
@@ -730,17 +845,7 @@
       letter-spacing: 0.04em;
     }
 
-    .doc-ext.word {
-      background: rgba(59, 130, 246, 0.15);
-      color: #93c5fd;
-      border: 1px solid rgba(59, 130, 246, 0.35);
-    }
-
-    .doc-ext.excel {
-      background: rgba(34, 197, 94, 0.15);
-      color: #86efac;
-      border: 1px solid rgba(34, 197, 94, 0.35);
-    }
+    
 
 
     /* ==============================================================
@@ -853,14 +958,14 @@
           <h1>Matriz de <em>levantamiento</em> por ficha y proceso.</h1>
         </div>
         <div class="header-actions">
-          <button class="btn-action" onclick="exportCSV()">
+          <button type="button" class="btn-action" onclick="exportCSV()">
             <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round"
                 d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
             </svg>
             Exportar CSV
           </button>
-          <button class="btn-action" onclick="window.print()">
+          <button type="button" class="btn-action" onclick="window.print()">
             <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round"
                 d="M6.72 13.829c-.24-1.044-.24-2.115 0-3.158m0 3.158a3.003 3.003 0 00-.72 2.671M6.72 10.671a3.003 3.003 0 01-.72-2.671M17.28 13.829c.24-1.044.24-2.115 0-3.158m0 3.158a3.003 3.003 0 01.72 2.671M17.28 10.671a3.003 3.003 0 00.72-2.671M3 8.25V18a2.25 2.25 0 002.25 2.25h13.5A2.25 2.25 0 0021 18V8.25m-18 0A2.25 2.25 0 015.25 6h13.5A2.25 2.25 0 0121 8.25m-18 0h18M9 3h6v3H9V3z" />
@@ -897,7 +1002,7 @@
       <div class="kpi-card" style="--kpi-accent: var(--mod-educativo);">
         <div class="kpi-label">Fichas Físicas Vinculadas</div>
         <div class="kpi-val-row">
-          <span class="kpi-val">16</span>
+          <span class="kpi-val" id="kpi-fichas">16</span>
         </div>
       </div>
 
@@ -926,27 +1031,27 @@
     <div class="controls-bar">
       <div class="filters-group" id="moduleFilters">
         <span class="filters-title">Módulo:</span>
-        <button class="filter-chip active" data-filter="ALL"
+        <button type="button" class="filter-chip active" data-filter="ALL"
           style="--chip-color: var(--platinum); --chip-glow: rgba(239, 241, 243, 0.4);">
           Todos <span class="chip-count" id="count-all">(33)</span>
         </button>
-        <button class="filter-chip" data-filter="Usuarios/Beneficiarios"
+        <button type="button" class="filter-chip" data-filter="Usuarios/Beneficiarios"
           style="--chip-color: var(--mod-padron); --chip-glow: var(--pacific-glow);">
           Usuarios/Beneficiarios <span class="chip-count" id="count-usuarios">(5)</span>
         </button>
-        <button class="filter-chip" data-filter="Salud y nutrición"
+        <button type="button" class="filter-chip" data-filter="Salud y nutrición"
           style="--chip-color: var(--mod-nutricion); --chip-glow: var(--mustard-glow);">
           Salud y nutrición <span class="chip-count" id="count-salud">(11)</span>
         </button>
-        <button class="filter-chip" data-filter="Acompañamiento educativo"
+        <button type="button" class="filter-chip" data-filter="Acompañamiento educativo"
           style="--chip-color: var(--mod-educativo); --chip-glow: rgba(45, 212, 191, 0.4);">
           Acompañamiento educativo <span class="chip-count" id="count-educativo">(7)</span>
         </button>
-        <button class="filter-chip" data-filter="Derivaciones y Seguimiento"
+        <button type="button" class="filter-chip" data-filter="Derivaciones y Seguimiento"
           style="--chip-color: var(--mod-pastoral); --chip-glow: rgba(192, 132, 252, 0.4);">
           Derivaciones y Seguimiento <span class="chip-count" id="count-derivaciones">(5)</span>
         </button>
-        <button class="filter-chip" data-filter="Instituciones y lugares de atención"
+        <button type="button" class="filter-chip" data-filter="Instituciones y lugares de atención"
           style="--chip-color: var(--mod-redes); --chip-glow: rgba(251, 146, 60, 0.4);">
           Instituciones y lugares de atención <span class="chip-count" id="count-instituciones">(5)</span>
         </button>
@@ -984,7 +1089,7 @@
         Mostrando <strong>1–11</strong> de <strong>33</strong> procesos <span class="page-count-badge">Página 1 de 3</span>
       </div>
       <div class="pagination-controls">
-        <button class="btn-page btn-nav" id="btnPrev" onclick="goToPage(currentPage - 1)">
+        <button type="button" class="btn-page btn-nav" id="btnPrev" onclick="goToPage(currentPage - 1)">
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
           </svg>
@@ -993,7 +1098,7 @@
         <div class="page-numbers" id="pageNumbers">
           <!-- Rendered via JavaScript -->
         </div>
-        <button class="btn-page btn-nav" id="btnNext" onclick="goToPage(currentPage + 1)">
+        <button type="button" class="btn-page btn-nav" id="btnNext" onclick="goToPage(currentPage + 1)">
           Siguiente
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
@@ -1004,7 +1109,7 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-      <div>Mostrando <strong id="visible-count">33</strong> de <strong>33</strong> procesos normalizados</div>
+      <div>Mostrando <strong id="visible-count">33</strong> de <strong id="footer-total">33</strong> procesos normalizados</div>
       <div>Asociación Cultural Johannes Gutenberg · Programa de Desarrollo Infantil (PDI) 2026</div>
     </footer>
 
@@ -1649,8 +1754,27 @@
       "Instituciones y lugares de atención": { color: "var(--mod-redes)", bg: "rgba(251, 146, 60, 0.15)", border: "rgba(251, 146, 60, 0.40)" }
     };
 
-    function updateChipCounts() {
-      const counts = { "ALL": data.length };
+        function updateMetrics() {
+      const total = data.length;
+      const alta = data.filter(d => d.prioridad === "Alta").length;
+      const media = data.filter(d => d.prioridad === "Media").length;
+      const uniqueDocs = new Set();
+      data.forEach(d => (d.documentos || []).forEach(doc => uniqueDocs.add(doc.archivo)));
+
+      const elTotal = document.getElementById("kpi-total");
+      const elAlta = document.getElementById("kpi-alta");
+      const elMedia = document.getElementById("kpi-media");
+      const elFichas = document.getElementById("kpi-fichas");
+      const elFooterTotal = document.getElementById("footer-total");
+
+      if (elTotal) elTotal.textContent = total;
+      if (elAlta) elAlta.textContent = alta;
+      if (elMedia) elMedia.textContent = media;
+      if (elFichas) elFichas.textContent = uniqueDocs.size;
+      if (elFooterTotal) elFooterTotal.textContent = total;
+
+      // Update Filter Chip Counts
+      const counts = { "ALL": total };
       data.forEach(d => {
         counts[d.modulo] = (counts[d.modulo] || 0) + 1;
       });
@@ -1674,6 +1798,9 @@
 
     function render() {
       const query = searchInput.value.trim().toLowerCase();
+      const isOnline = window.location.protocol.startsWith("http");
+      const rawBase = "https://raw.githubusercontent.com/Alessby06/matrizPDI/main/";
+
       const filtered = data.filter(item => {
         const matchModule = currentFilter === "ALL" || item.modulo === currentFilter;
         const haystack = (item.codigo + " " + item.processo + " " + item.ficha + " " + item.info + " " + item.modulo + " " + item.prioridad).toLowerCase();
@@ -1684,17 +1811,47 @@
       const totalItems = filtered.length;
       const totalPages = Math.max(1, Math.ceil(totalItems / itemsPerPage));
 
-      // Clamp currentPage
       if (currentPage > totalPages) currentPage = totalPages;
       if (currentPage < 1) currentPage = 1;
 
-      // Slice items for pagination (render all if printing)
       let pageItems = filtered;
       if (!isPrinting) {
         const startIndex = (currentPage - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
         pageItems = filtered.slice(startIndex, endIndex);
       }
+
+      const paginationBar = document.getElementById("paginationBar");
+      const paginationInfo = document.getElementById("paginationInfo");
+      const pageNumbers = document.getElementById("pageNumbers");
+      const btnPrev = document.getElementById("btnPrev");
+      const btnNext = document.getElementById("btnNext");
+
+      if (totalItems === 0) {
+        if (paginationBar && paginationBar.style) paginationBar.style.display = "none";
+      } else {
+        if (paginationBar && paginationBar.style) paginationBar.style.display = isPrinting ? "none" : "flex";
+        if (paginationInfo) {
+          const startNum = (currentPage - 1) * itemsPerPage + 1;
+          const endNum = Math.min(currentPage * itemsPerPage, totalItems);
+          paginationInfo.innerHTML = `Mostrando <strong>${startNum}–${endNum}</strong> de <strong>${totalItems}</strong> procesos <span class="page-count-badge">Página ${currentPage} de ${totalPages}</span>`;
+        }
+      }
+
+      if (btnPrev) btnPrev.disabled = (currentPage <= 1);
+      if (btnNext) btnNext.disabled = (currentPage >= totalPages);
+
+      if (pageNumbers) {
+        let pagesHtml = "";
+        for (let p = 1; p <= totalPages; p++) {
+          const isActive = (p === currentPage);
+          pagesHtml += `<button type="button" class="btn-page ${isActive ? 'active' : ''}" onclick="goToPage(${p})">${p}</button>`;
+        }
+        pageNumbers.innerHTML = pagesHtml;
+      }
+
+      const visibleCountEl = document.getElementById("visible-count");
+      if (visibleCountEl) visibleCountEl.textContent = totalItems;
 
       if (pageItems.length === 0) {
         matrizBody.innerHTML = '<div class="empty-state">No se encontraron procesos que coincidan con la búsqueda o filtro seleccionado.</div>';
@@ -1716,15 +1873,8 @@
               <!-- 3. Ficha/Documento -->
               <div class="col-ficha">
                 <div class="doc-links-group">
-                  ${item.documentos.map(doc => {
-                    const isOnline = window.location.protocol.startsWith("http");
-                    const rawBase = "https://raw.githubusercontent.com/Alessby06/matrizPDI/main/";
-                    
-                    // Native PDF link: Served directly from host (Vercel/Local) with Content-Type: application/pdf
-                    // This opens the PDF directly inside the browser tab WITHOUT triggering a download
+                  ${(item.documentos || []).map(doc => {
                     const pdfHref = "./" + encodeURI(doc.archivoPdf);
-
-                    // Editable original link (Word / Excel)
                     const downloadHref = isOnline
                       ? rawBase + encodeURI(doc.archivo)
                       : "./" + encodeURI(doc.archivo);
@@ -1732,14 +1882,14 @@
                     return `
                       <div class="doc-card-link">
                         <a href="${pdfHref}" target="_blank" rel="noopener noreferrer" class="doc-btn-view" title="Leer ficha en PDF (Visor nativo): ${doc.nombre}">
-                          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                          <svg fill="none" stroke="var(--pacific-blue)" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
                           </svg>
                           <span class="doc-title">${doc.nombre}</span>
                           <span class="doc-ext pdf">PDF</span>
                         </a>
-                        <a href="${downloadHref}" download="${doc.nombre}" class="doc-btn-dl" target="_blank" rel="noopener noreferrer" title="Descargar original editable (${doc.tipo})">
-                          <svg fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                        <a href="${downloadHref}" download="${doc.nombre}" class="doc-btn-dl" title="Descargar original editable (${doc.tipo})">
+                          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
                           </svg>
                           <span class="doc-dl-label">${doc.tipo}</span>
@@ -1770,46 +1920,30 @@
           `;
         }).join("");
       }
-
-      // Update Pagination UI
-      const paginationInfo = document.getElementById("paginationInfo");
-      const pageNumbers = document.getElementById("pageNumbers");
-      const btnPrev = document.getElementById("btnPrev");
-      const btnNext = document.getElementById("btnNext");
-
-      const startRange = totalItems === 0 ? 0 : (currentPage - 1) * itemsPerPage + 1;
-      const endRange = Math.min(totalItems, currentPage * itemsPerPage);
-
-      if (paginationInfo) {
-        paginationInfo.innerHTML = `Mostrando <strong>${startRange}–${endRange}</strong> de <strong>${totalItems}</strong> procesos <span class="page-count-badge">Página ${currentPage} de ${totalPages}</span>`;
-      }
-
-      if (btnPrev) btnPrev.disabled = (currentPage <= 1);
-      if (btnNext) btnNext.disabled = (currentPage >= totalPages);
-
-      if (pageNumbers) {
-        let pagesHtml = "";
-        for (let p = 1; p <= totalPages; p++) {
-          const isActive = (p === currentPage);
-          pagesHtml += `<button class="btn-page ${isActive ? 'active' : ''}" onclick="goToPage(${p})">${p}</button>`;
-        }
-        pageNumbers.innerHTML = pagesHtml;
-      }
-
-      const visibleCountEl = document.getElementById("visible-count");
-      if (visibleCountEl) visibleCountEl.textContent = totalItems;
     }
 
-        function exportCSV() {
+    function exportCSV() {
+      const query = searchInput.value.trim().toLowerCase();
+      // If user filtered or searched, export the filtered results; otherwise export full data
+      const exportData = (query || currentFilter !== "ALL")
+        ? data.filter(item => {
+            const matchModule = currentFilter === "ALL" || item.modulo === currentFilter;
+            const haystack = (item.codigo + " " + item.processo + " " + item.ficha + " " + item.info + " " + item.modulo + " " + item.prioridad).toLowerCase();
+            return matchModule && (!query || haystack.includes(query));
+          })
+        : data;
+
+      const escapeCSV = (val) => `"${(val || "").toString().replace(/"/g, '""')}"`;
       let csvContent = "\uFEFFCódigo,Proceso,Ficha/Documento,Información que registra,Módulo,Prioridad\n";
-      data.forEach(item => {
+
+      exportData.forEach(item => {
         const row = [
-          `"${item.codigo}"`,
-          `"${item.processo}"`,
-          `"${item.ficha}"`,
-          `"${item.info.replace(/"/g, '""')}"`,
-          `"${item.modulo}"`,
-          `"${item.prioridad}"`
+          escapeCSV(item.codigo),
+          escapeCSV(item.processo),
+          escapeCSV(item.ficha),
+          escapeCSV(item.info),
+          escapeCSV(item.modulo),
+          escapeCSV(item.prioridad)
         ];
         csvContent += row.join(",") + "\n";
       });
@@ -1824,7 +1958,7 @@
       document.body.removeChild(link);
     }
 
-// Filter Chips Event Listeners (reset to page 1)
+    // Filter Chips Event Listeners (reset to page 1)
     filterChips.forEach(chip => {
       chip.addEventListener("click", () => {
         filterChips.forEach(c => c.classList.remove("active"));
@@ -1835,27 +1969,41 @@
       });
     });
 
-    let searchRaf = null;
+    // 150ms debounce on search input
+    let searchDebounceTimer = null;
     searchInput.addEventListener("input", () => {
-      if (searchRaf) cancelAnimationFrame(searchRaf);
-      searchRaf = requestAnimationFrame(() => {
+      clearTimeout(searchDebounceTimer);
+      searchDebounceTimer = setTimeout(() => {
         currentPage = 1;
-        render();
-      });
+        requestAnimationFrame(render);
+      }, 150);
     });
 
-    // Handle Printing: Render all 33 items for print/PDF export
-    window.onbeforeprint = () => {
+    // Modern and Legacy Print Handlers
+    function handleBeforePrint() {
       isPrinting = true;
       render();
-    };
-    window.onafterprint = () => {
+    }
+    function handleAfterPrint() {
       isPrinting = false;
       render();
-    };
+    }
+
+    if (window.matchMedia) {
+      const mediaQueryList = window.matchMedia('print');
+      mediaQueryList.addEventListener('change', mql => {
+        if (mql.matches) {
+          handleBeforePrint();
+        } else {
+          handleAfterPrint();
+        }
+      });
+    }
+    window.onbeforeprint = handleBeforePrint;
+    window.onafterprint = handleAfterPrint;
 
     // Initial render
-    updateChipCounts();
+    updateMetrics();
     render();
   </script>
 </body>
