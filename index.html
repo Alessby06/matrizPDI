@@ -1720,10 +1720,9 @@
                     const isOnline = window.location.protocol.startsWith("http");
                     const rawBase = "https://raw.githubusercontent.com/Alessby06/matrizPDI/main/";
                     
-                    // Native PDF link (for instant, crystal-clear browser reading)
-                    const pdfHref = isOnline
-                      ? rawBase + encodeURI(doc.archivoPdf)
-                      : "./" + encodeURI(doc.archivoPdf);
+                    // Native PDF link: Served directly from host (Vercel/Local) with Content-Type: application/pdf
+                    // This opens the PDF directly inside the browser tab WITHOUT triggering a download
+                    const pdfHref = "./" + encodeURI(doc.archivoPdf);
 
                     // Editable original link (Word / Excel)
                     const downloadHref = isOnline
