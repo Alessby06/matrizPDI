@@ -399,6 +399,11 @@
     }
 
     /* Col 1: Código */
+    .col-codigo-cell {
+      display: flex;
+      align-items: center;
+    }
+
     .col-codigo {
       font-family: var(--mono-font);
       font-size: 12.5px;
@@ -411,6 +416,11 @@
       text-align: center;
       display: inline-block;
       width: fit-content;
+    }
+
+    .col-info::before,
+    .col-ficha::before {
+      display: none;
     }
 
     /* Col 2: Proceso */
@@ -883,6 +893,381 @@
       display: flex;
       gap: 6px;
       align-items: center;
+    }
+
+    /* ==============================================================
+       RESPONSIVE ADAPTIVE RULES (Android, Mobile & Half-Screen Split)
+       ============================================================== */
+
+    /* TABLET & HALF-SCREEN DESKTOP (<= 992px) */
+    @media (max-width: 992px) {
+      body {
+        padding: 24px 18px 70px;
+      }
+
+      .header {
+        margin-bottom: 24px;
+      }
+
+      .header-top {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+      }
+
+      .header-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+        gap: 10px;
+      }
+
+      .btn-action {
+        justify-content: center;
+        padding: 10px 14px;
+      }
+
+      /* 2x2 Grid for KPI Cards */
+      .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-bottom: 22px;
+      }
+
+      .kpi-card {
+        padding: 14px 16px;
+      }
+
+      .kpi-val {
+        font-size: 26px;
+      }
+
+      .kpi-label {
+        font-size: 10px;
+      }
+
+      /* Controls Bar: Vertical stack with swipeable filter chips */
+      .controls-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+        padding: 14px 16px;
+        margin-bottom: 20px;
+      }
+
+      .filters-title {
+        display: block;
+        margin-bottom: 2px;
+      }
+
+      .filters-group {
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 4px 2px 8px;
+        gap: 8px;
+      }
+
+      .filters-group::-webkit-scrollbar {
+        display: none;
+      }
+
+      .filter-chip {
+        flex-shrink: 0;
+        white-space: nowrap;
+      }
+
+      .search-box {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      .search-input {
+        font-size: 13.5px;
+        padding: 10px 16px 10px 42px;
+      }
+
+      /* Transform Matrix Table into Obsidian Executive Cards */
+      .table-wrapper {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        overflow-x: visible;
+        contain: none;
+        border-radius: 0;
+      }
+
+      .matriz-header {
+        display: none !important;
+      }
+
+      .matriz-body {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .matriz-row {
+        display: grid;
+        grid-template-columns: auto auto 1fr;
+        grid-template-areas:
+          "codigo modulo prioridad"
+          "proceso proceso proceso"
+          "info info info"
+          "ficha ficha ficha";
+        gap: 12px;
+        min-width: 0;
+        padding: 18px 20px;
+        background: rgba(22, 22, 26, 0.90);
+        border: 1px solid var(--border-line);
+        border-radius: var(--radius-lg);
+        box-shadow: 0 6px 22px rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(12px);
+        align-items: start;
+        border-bottom: 1px solid var(--border-line);
+      }
+
+      .matriz-row::before {
+        border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+        width: 5px;
+        opacity: 0.9;
+      }
+
+      .col-codigo-cell {
+        grid-area: codigo;
+      }
+
+      .col-modulo {
+        grid-area: modulo;
+      }
+
+      .col-prioridad {
+        grid-area: prioridad;
+        justify-self: end;
+      }
+
+      .col-proceso {
+        grid-area: proceso;
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--platinum);
+        line-height: 1.35;
+        padding-top: 2px;
+      }
+
+      .col-info {
+        grid-area: info;
+        font-size: 13px;
+        color: var(--text-muted);
+        line-height: 1.5;
+        background: rgba(14, 14, 18, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: var(--radius-sm);
+        padding: 10px 14px;
+      }
+
+      .col-info::before {
+        content: "Información que registra:";
+        display: block;
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--dim-grey);
+        margin-bottom: 4px;
+      }
+
+      .col-ficha {
+        grid-area: ficha;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .col-ficha::before {
+        content: "Ficha(s) fuente vinculada(s):";
+        display: block;
+        font-size: 10.5px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--mustard);
+        margin-bottom: 6px;
+      }
+
+      .col-ficha .doc-links-group {
+        width: 100%;
+      }
+
+      .col-ficha .doc-card-link {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+      }
+
+      .doc-btn-view {
+        flex: 1;
+        min-width: 0;
+        padding: 8px 12px;
+      }
+
+      .doc-title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .doc-btn-dl {
+        flex-shrink: 0;
+        padding: 8px 12px;
+        min-height: 38px;
+      }
+
+      /* Pagination Bar */
+      .pagination-bar {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 16px;
+      }
+
+      .pagination-info {
+        justify-content: center;
+        text-align: center;
+        font-size: 12.5px;
+      }
+
+      .pagination-controls {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .btn-page {
+        min-width: 38px;
+        height: 38px;
+        padding: 0 10px;
+      }
+    }
+
+    /* ANDROID & COMPACT MOBILE (<= 540px) */
+    @media (max-width: 540px) {
+      body {
+        padding: 16px 12px 60px;
+      }
+
+      .header {
+        margin-bottom: 18px;
+      }
+
+      h1 {
+        font-size: 22px;
+        margin-bottom: 8px;
+      }
+
+      .header-actions {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .btn-action {
+        width: 100%;
+        min-height: 42px;
+      }
+
+      .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+
+      .kpi-card {
+        padding: 10px 12px;
+      }
+
+      .kpi-val {
+        font-size: 22px;
+      }
+
+      .kpi-label {
+        font-size: 9.5px;
+      }
+
+      .controls-bar {
+        padding: 12px;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+
+      .search-input {
+        height: 42px;
+        font-size: 13.5px;
+      }
+
+      /* Card Grid Layout for Ultra-Narrow Screens */
+      .matriz-row {
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+          "codigo prioridad"
+          "modulo modulo"
+          "proceso proceso"
+          "info info"
+          "ficha ficha";
+        gap: 10px;
+        padding: 14px 12px;
+      }
+
+      .col-modulo .modulo-badge {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .col-info {
+        font-size: 12.5px;
+        padding: 8px 10px;
+      }
+
+      .col-ficha .doc-card-link {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .doc-btn-view {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 9px 10px;
+      }
+
+      .doc-title {
+        white-space: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .doc-btn-dl {
+        border-left: none;
+        justify-content: center;
+        padding: 8px 10px;
+        background: rgba(254, 215, 102, 0.08);
+      }
+
+      .pagination-bar {
+        padding: 12px 10px;
+      }
+
+      .btn-page {
+        min-width: 36px;
+        height: 36px;
+        font-size: 12.5px;
+      }
     }
 
   </style>
@@ -1777,7 +2162,7 @@
           return `
             <div class="matriz-row" style="--row-accent: ${modStyle.color};">
               <!-- 1. Código -->
-              <div>
+              <div class="col-codigo-cell">
                 <span class="col-codigo">${item.codigo}</span>
               </div>
 
