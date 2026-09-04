@@ -14,6 +14,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,300..900&display=swap"
     rel="stylesheet">
+  <script>
+    (function () {
+      const saved = localStorage.getItem("pdi_theme");
+      if (saved === "light") {
+        document.documentElement.setAttribute("data-theme", "light");
+        const metaTheme = document.querySelector('meta[name="theme-color"]');
+        if (metaTheme) metaTheme.setAttribute("content", "#f8fafc");
+      }
+    })();
+  </script>
   <style>
     :root {
       --obsidian: #000000;
@@ -59,6 +69,231 @@
       --ui-font: 'Google Sans Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --mono-font: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       color-scheme: dark;
+    }
+
+    /* ==============================================================
+       LIGHT THEME TOKENS (Pure Pearl / Ivory Architecture)
+       ============================================================== */
+    [data-theme="light"] {
+      --obsidian: #f8fafc;
+      --shadow-grey: #ffffff;
+      --shadow-glass: rgba(255, 255, 255, 0.88);
+      --surface-card: #ffffff;
+      --surface-row-hover: rgba(241, 245, 249, 0.85);
+      --dim-grey: #64748b;
+      --border-line: rgba(203, 213, 225, 0.85);
+      --border-glow: rgba(2, 132, 199, 0.25);
+
+      --mustard: #b45309;
+      --mustard-glow: rgba(180, 83, 9, 0.20);
+      --mustard-bg: rgba(245, 158, 11, 0.14);
+
+      --pacific-blue: #0284c7;
+      --pacific-glow: rgba(2, 132, 199, 0.22);
+      --pacific-bg: rgba(2, 132, 199, 0.12);
+
+      --platinum: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #64748b;
+
+      /* Módulos Semánticos para Fondo Claro */
+      --mod-padron: #0284c7;
+      --mod-nutricion: #b45309;
+      --mod-educativo: #0d9488;
+      --mod-pastoral: #9333ea;
+      --mod-redes: #ea580c;
+
+      /* Prioridades para Fondo Claro */
+      --prio-alta: #dc2626;
+      --prio-alta-bg: #fee2e2;
+      --prio-media: #b45309;
+      --prio-media-bg: #fef3c7;
+      --prio-baja: #059669;
+      --prio-baja-bg: #d1fae5;
+
+      color-scheme: light;
+    }
+
+    /* ==============================================================
+       CIRCULAR REVEAL VIEW TRANSITIONS (GPU Accelerated)
+       ============================================================== */
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation: none;
+      mix-blend-mode: normal;
+    }
+
+    ::view-transition-old(root) {
+      z-index: 1;
+    }
+
+    ::view-transition-new(root) {
+      z-index: 999;
+    }
+
+    html.theme-transitioning-to-dark::view-transition-old(root) {
+      z-index: 999;
+    }
+
+    html.theme-transitioning-to-dark::view-transition-new(root) {
+      z-index: 1;
+    }
+
+    /* Light Theme Component Refinements */
+    [data-theme="light"] body {
+      background-color: var(--obsidian);
+      color: var(--platinum);
+    }
+
+    [data-theme="light"] body::before {
+      background-image:
+        radial-gradient(900px 500px at 15% -5%, rgba(2, 132, 199, 0.08), transparent 70%),
+        radial-gradient(800px 450px at 85% 15%, rgba(245, 158, 11, 0.07), transparent 65%),
+        radial-gradient(1000px 600px at 50% 100%, rgba(147, 51, 234, 0.05), transparent 70%);
+    }
+
+    [data-theme="light"] .matriz-header {
+      background: #f1f5f9;
+      color: #0f172a;
+      border-bottom: 2px solid #cbd5e1;
+    }
+
+    [data-theme="light"] .table-wrapper {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    [data-theme="light"] .matriz-row {
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    [data-theme="light"] .matriz-row:hover {
+      background: #f8fafc;
+    }
+
+    [data-theme="light"] .kpi-card {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+    }
+
+    [data-theme="light"] .controls-bar,
+    [data-theme="light"] .pagination-bar {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+    }
+
+    [data-theme="light"] .search-input {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      color: #0f172a;
+    }
+
+    [data-theme="light"] .filter-chip {
+      background: #f1f5f9;
+      border-color: #e2e8f0;
+      color: #475569;
+    }
+
+    [data-theme="light"] .filter-chip:hover {
+      color: #0f172a;
+      background: #e2e8f0;
+    }
+
+    [data-theme="light"] .filter-chip.active {
+      background: var(--chip-color);
+      color: #ffffff;
+    }
+
+    [data-theme="light"] .doc-card-link {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+
+    [data-theme="light"] .doc-card-link:hover {
+      background: #f1f5f9;
+      border-color: var(--pacific-blue);
+    }
+
+    [data-theme="light"] .doc-btn-view {
+      color: #1e293b;
+    }
+
+    [data-theme="light"] .doc-btn-view:hover {
+      color: var(--pacific-blue);
+    }
+
+    [data-theme="light"] .doc-btn-dl {
+      background: #f1f5f9;
+      border-left-color: #e2e8f0;
+      color: #64748b;
+    }
+
+    [data-theme="light"] .doc-btn-dl:hover {
+      background: rgba(245, 158, 11, 0.15);
+      color: #b45309;
+    }
+
+    [data-theme="light"] .btn-action {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      color: #1e293b;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    [data-theme="light"] .btn-action:hover {
+      background: #f8fafc;
+      border-color: var(--pacific-blue);
+      color: var(--pacific-blue);
+    }
+
+    [data-theme="light"] .btn-page {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+      color: #1e293b;
+    }
+
+    [data-theme="light"] .btn-page.active {
+      background: var(--pacific-blue);
+      color: #ffffff;
+    }
+
+    [data-theme="light"] .page-count-badge {
+      background: #f1f5f9;
+      border-color: #e2e8f0;
+      color: #b45309;
+    }
+
+    [data-theme="light"] .footer {
+      border-top-color: #e2e8f0;
+      color: #64748b;
+    }
+
+    [data-theme="light"] ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+
+    [data-theme="light"] ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+    }
+
+    [data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    @media (max-width: 992px) {
+      [data-theme="light"] .matriz-row {
+        background: #ffffff;
+        border-color: #e2e8f0;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      }
+
+      [data-theme="light"] .col-info {
+        background: #f8fafc;
+        border-color: #e2e8f0;
+      }
     }
 
     html {
@@ -951,7 +1186,7 @@
 
       .header-actions {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
         width: 100%;
         gap: 10px;
       }
@@ -1317,6 +1552,12 @@
           <h1>Matriz de <em>levantamiento</em> por ficha y proceso.</h1>
         </div>
         <div class="header-actions">
+          <button type="button" class="btn-action btn-theme-toggle" id="btnThemeToggle" onclick="toggleTheme(event)" title="Alternar modo claro / noche" aria-label="Alternar modo claro o noche">
+            <svg id="themeIcon" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+            </svg>
+            <span id="themeLabel">Modo Claro</span>
+          </button>
           <button type="button" class="btn-action" onclick="exportCSV()">
             <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round"
@@ -2340,7 +2581,109 @@
     window.onbeforeprint = handleBeforePrint;
     window.onafterprint = handleAfterPrint;
 
+    // ==============================================================
+    // THEME CONTROLLER & CIRCULAR REVEAL ANIMATION (GPU Accelerated)
+    // ==============================================================
+    function updateThemeUI(theme) {
+      const icon = document.getElementById("themeIcon");
+      const label = document.getElementById("themeLabel");
+      const metaTheme = document.querySelector('meta[name="theme-color"]');
+      const isLight = (theme === "light");
+
+      if (isLight) {
+        if (icon) {
+          icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />`;
+        }
+        if (label) label.textContent = "Modo Noche";
+        if (metaTheme) metaTheme.setAttribute("content", "#f8fafc");
+      } else {
+        if (icon) {
+          icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />`;
+        }
+        if (label) label.textContent = "Modo Claro";
+        if (metaTheme) metaTheme.setAttribute("content", "#000000");
+      }
+    }
+
+    function toggleTheme(event) {
+      const currentTheme = document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+      const nextTheme = (currentTheme === "dark") ? "light" : "dark";
+
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const supportsViewTransition = typeof document.startViewTransition === "function" && !prefersReducedMotion;
+
+      const applyTheme = () => {
+        if (nextTheme === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+          localStorage.setItem("pdi_theme", "light");
+        } else {
+          document.documentElement.removeAttribute("data-theme");
+          localStorage.setItem("pdi_theme", "dark");
+        }
+        updateThemeUI(nextTheme);
+      };
+
+      if (!supportsViewTransition) {
+        applyTheme();
+        return;
+      }
+
+      const btn = event.currentTarget || document.getElementById("btnThemeToggle");
+      const rect = btn.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
+
+      const endRadius = Math.hypot(
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y)
+      );
+
+      if (nextTheme === "dark") {
+        document.documentElement.classList.add("theme-transitioning-to-dark");
+      }
+
+      const transition = document.startViewTransition(() => {
+        applyTheme();
+      });
+
+      transition.ready.then(() => {
+        if (nextTheme === "light") {
+          // DARK -> LIGHT: Expand from icon center outwards
+          document.documentElement.animate(
+            [
+              { clipPath: `circle(0px at ${x}px ${y}px)` },
+              { clipPath: `circle(${endRadius}px at ${x}px ${y}px)` }
+            ],
+            {
+              duration: 450,
+              easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+              pseudoElement: "::view-transition-new(root)"
+            }
+          );
+        } else {
+          // LIGHT -> DARK: Contract from outside inwards into the icon center
+          document.documentElement.animate(
+            [
+              { clipPath: `circle(${endRadius}px at ${x}px ${y}px)` },
+              { clipPath: `circle(0px at ${x}px ${y}px)` }
+            ],
+            {
+              duration: 450,
+              easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+              pseudoElement: "::view-transition-old(root)"
+            }
+          );
+        }
+      });
+
+      transition.finished.finally(() => {
+        document.documentElement.classList.remove("theme-transitioning-to-dark");
+      });
+    }
+
     // Initial render
+    const initialTheme = document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+    updateThemeUI(initialTheme);
     updateMetrics();
     render();
   </script>
