@@ -3,7 +3,12 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Matriz — PDI Johannes Gutenberg</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,6 +58,11 @@
 
       --ui-font: 'Google Sans Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --mono-font: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      color-scheme: dark;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     * {
@@ -60,6 +70,30 @@
       margin: 0;
       padding: 0;
       font-family: var(--ui-font);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button, a, .filter-chip, .btn-page, .btn-action {
+      touch-action: manipulation;
+    }
+
+    /* Refined Obsidian Scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #000000;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(105, 103, 115, 0.45);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--pacific-blue);
     }
 
     body {
@@ -986,7 +1020,7 @@
       }
 
       .search-input {
-        font-size: 13.5px;
+        font-size: 16px;
         padding: 10px 16px 10px 42px;
       }
 
@@ -1208,7 +1242,7 @@
 
       .search-input {
         height: 42px;
-        font-size: 13.5px;
+        font-size: 16px;
       }
 
       /* Card Grid Layout for Ultra-Narrow Screens */
@@ -2094,8 +2128,11 @@
       currentPage = page;
       render();
       const tableEl = document.querySelector(".table-wrapper");
-      if (tableEl && window.scrollY > tableEl.offsetTop) {
-        tableEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (tableEl) {
+        const targetY = tableEl.getBoundingClientRect().top + window.pageYOffset - 24;
+        if (window.scrollY > targetY) {
+          window.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
+        }
       }
     }
 
